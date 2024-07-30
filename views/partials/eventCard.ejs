@@ -1,0 +1,10 @@
+<div class="event-card <%= new Date(event.date) < new Date() ? 'past-event' : '' %>">
+    <img src="<%= event.poster %>" alt="<%= event.name %> poster">
+    <div>
+      <h3><%= event.name %></h3>
+      <p><strong>Date:</strong> <%= event.date %></p>
+      <p><strong>Location:</strong> <%= event.location %></p>
+      <p><%= event.description %></p>
+    </div>
+  </div>
+  

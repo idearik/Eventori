@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Eventori</title>
+  <script>
+    function showEvents(eventType) {
+      document.getElementById('upcomingEvents').style.display = eventType === 'upcoming' ? 'block' : 'none';
+      document.getElementById('pastEvents').style.display = eventType === 'past' ? 'block' : 'none';
+      document.getElementById('upcomingButton').classList.toggle('active', eventType === 'upcoming');
+      document.getElementById('pastButton').classList.toggle('active', eventType === 'past');
+    }
+  </script>
+</head>
+<body onload="showEvents('upcoming')">
+  <header>
+    <h1>Eventori</h1>
+    <a href="/add-event" class="add-event-button">Add Event</a>
+  </header>
+  <main>
+    <div class="switch-buttons">
+      <button id="upcomingButton" onclick="showEvents('upcoming')">Upcoming Events</button>
+      <button id="pastButton" onclick="showEvents('past')">Past Events</button>
+    </div>
+
+    <div id="upcomingEvents" class="event-card-container">
+      <h2>Upcoming Events</h2>
+      <% upcomingEvents.forEach(event => { %>
+        <%- include('partials/eventCard', { event: event }) %>
+      <% }) %>
+    </div>
+
+    <div id="pastEvents" class="event-card-container" style="display: none;">
+      <h2>Past Events</h2>
+      <% pastEvents.forEach(event => { %>
+        <%- include('partials/eventCard', { event: event }) %>
+      <% }) %>
+    </div>
+  </main>
+</body>
+</html>
